@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style/layout.css">
+    
+    <script type="text/javascript" src="lib/webgl-obj-loader.min.js"></script>
+    <script type="text/javascript" src="lib/utils.js"></script>
+    <script type="text/javascript" src="lib/m4.js"></script>
+    <script type="text/javascript" src="lib/skybox.js"></script>
+    <script type="text/javascript" src="lib/objects.js"></script>
+    <script type="text/javascript" src="lib/node.js"></script>
+    <script type="text/javascript" src="lib/sceneGraph.js"></script>
+    <script type="text/javascript" src="lib/globals.js"></script>
+    <script type="text/javascript" src="lib/audioLoop.js"></script>
+    <script type="text/javascript" src="lib/collision.js"></script>
+    <script type="text/javascript" src="lib/app.js"></script>
+    
+</head>
+
+
+<body>
+  <canvas id="c">  </canvas>
+
+  <div class="title-div">
+    <b>Arkanoid</b>
+  </div>
+
+  <div id="legend" class="settings-div">
+    <p >
+      <b>Light parameters</b>			
+      <ul >
+        <li>
+         <b>Directional light</b> </br></br>
+          <div id="sliderAlpha"> bottom
+            <input id="slide1" type="range" min="-90" class = "slider" max="90" step="1.0"  value="0" oninput="dirAlphaSlider(this.value);"/> up  <br/>	
+          </div>
+          <div id="sliderBeta"> left
+            <input id="slide2" type="range" min="0" class = "slider" max="180" step="1.0" value="90" oninput="dirBetaSlider(this.value);"/> right  <br/>	
+          </div>
+          <div>
+            color: <input type="color" class="color-picker" id="dirColor" value="#ffffff" onchange="dirColorChange(this.value);"> </br>
+          </div>
+        </li></br>
+        <li>
+
+          <b>Point light</b></br></br>
+          <div id="decayDIV">
+            <input id="decay" type="range" min="0" class = "slider" max="2" step="1" value="1" oninput="decayChange(this.value);"/> Decay </br>
+          </div>
+          <div id = "targetDIV">
+            <input id="target" type="range" min="1" class = "slider" max="200" step="1" value="20" oninput="targetChange(this.value);"/> Target </br>
+          </div>
+          <div id = "shinyDIV">
+            <input id="shiny" type="range" min="20" class = "slider" max="100" step="1" value="20" oninput="shinyChange(this.value);"/> shiny </br>
+          </div>
+          <div id="xDIV">
+            <input id="x" type="range" min="-100" class = "slider" max="100" step="1" value="0" oninput="pointXChange(this.value);"/> x</br>
+          </div>
+          <div id = "yDIV">
+            <input id="y" type="range" min="-100" class = "slider" max="100" step="1" value="0" oninput="pointYChange(this.value);"/> y</br>
+          </div>
+          <div id="zDIV">
+            <input id="z" type="range" min="-100" class = "slider" max="100" step="0.25" value="0" oninput="pointZChange(this.value);"/> z</br>
+          </div>
+          <div>
+            color: <input type="color" class="color-picker" value="#ffffff" id="pointcolor" onchange="colorChange(this.value);"> </br>
+          </div>
+        </li></br>
+        <li>
+          Specular:<br>
+          <input type="radio" id="specNone"
+                name="specular" value="none" onclick = "specularInactive();" checked>
+          <label for="specNone">None</label>
+          <input type="radio" id="specPhong"
+                name="specular" value="phong" onclick = "specularActive();">
+          <label for="specPhong">Phong</label>
+        </li>
+
+        
+      </ul>
+    </p>
+  </div>		
+
+  <div id="cameraDiv" class="camera-settings-div">
+    <p>
+      <b>Camera parameters 
+      </b>			
+      <ul>
+        <li>
+          <input id="camerax" type="range" class = "slider" min="0" max="50" step="1" value="25" oninput="cameraxChange(this.value);"/> x </br>
+        </li>
+        <li>
+          <input id="cameray" type="range" class = "slider" min="-60" max="-20" step="1" value="-40" oninput="camerayChange(this.value);"/> y </br>
+        </li>
+        <li>
+          <input id="cameraz" type="range" class = "slider" min="30" max="150" step="1" value="70" oninput="camerazChange(this.value);"/> z </br>
+        </li>
+        <li>
+          <input id="elevation" type="range" class = "slider" min="-50" max="50" step="1" value="20" oninput="elevationChange(this.value);"/> elevation </br>
+        </li>
+        <li>
+          <input id="angle" type="range" class = "slider" min="-60" max="60" step="1" value="0" oninput="angleChange(this.value);"/> angle </br>
+        </li>
+      </ul>
+    </p>
+  </div>
+
+  <div id="score" class="score-div">
+    <p >
+      <b>Score: <div id="scoreDiv">0</div></b>			
+    </p>
+  </div>
+  <div id="controls" class="controls-div" >
+    <p >
+      <b>Controls</b>			
+      <ul>
+        <li>
+          Start/Stop game: enter
+        </li>
+        <li>
+          Paddle controls: 
+          <ul>
+            <li>
+              move left: "A" key;
+            </li>
+            <li>
+              move right: "D" key;
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </p>
+    <p>
+      <ul>
+        <li>
+          <b>Music</b>
+          <input type="checkbox" class="check" id="audioOn" name="audio" onclick="audiOnChange()">
+        </li>
+        <li>
+          <b>Effects</b>
+          <input type="checkbox" class="check" id="effectsOn" name="effects" onclick="effectsOnChange()">
+        </li>
+      </ul>
+    </p>
+  </div>		
+    
+  </body>
+  
+
+</html>

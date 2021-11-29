@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    background-color: gray;
+    font-family: "ＭＳ Ｐゴシック";
+    color: rgb(18, 206, 18);
+  }
+canvas {
+    display: block;
+    background-color: white;
+}
+
+
+
+.slider {
+    -webkit-appearance: none;
+    width: 50%;
+    height: 15px;
+    border-radius: 5px;  
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+  }
+
+.controls-div {
+    position: absolute;
+    z-index: 1; 
+    right: 10px; 
+    top: 160px; 
+    width:250px; 
+    height:210px; 
+    background-color: black; 
+    border-style: double; 
+    border-color: rgb(18, 206, 18);
+    opacity: 0.7; 
+    padding: 5px 10px 5px 10px; 
+    overflow:auto
+}
+
+.score-div {
+    position: absolute; 
+    text-align: center;
+    z-index: 1; 
+    right: 10px; 
+    top: 50px; 
+    width:100px; 
+    height:89px; 
+    background-color: black; 
+    border-style: double; 
+    border-color: rgb(18, 206, 18);
+    opacity: 0.7; 
+    
+    overflow:auto
+}
+
+.camera-settings-div{
+    position: absolute; 
+    z-index: 1; 
+    right: 10px; 
+    top: 400px; 
+    width:250px; 
+    height:190px; 
+    background-color: black;
+    border-style: double; 
+    border-color: rgb(18, 206, 18);
+    opacity: 0.7; 
+    padding: 5px 10px 5px 10px; 
+    overflow:auto
+}
+
+.title-div {
+    text-align: center;
+    font-size: 20px;
+    position: absolute; 
+    z-index: 1; 
+    left: 10px; 
+    top: 50px; 
+    width:250px; 
+    height:30px; 
+    background-color: black;
+    border-style: double; 
+    border-color: rgb(18, 206, 18);
+    opacity: 0.7; 
+    padding: 5px 10px 5px 10px; 
+    overflow:auto
+}
+.settings-div{
+    position: absolute; 
+    z-index: 1; 
+    left: 10px; 
+    top: 100px; 
+    width:250px; 
+    height:500px; 
+    background-color: black;
+    border-style: double; 
+    border-color: rgb(18, 206, 18);
+    opacity: 0.7; 
+    padding: 5px 10px 5px 10px; 
+    overflow:auto
+}
+
+
+
+.color-picker{
+    width: 30px;
+    height: 10px;
+}
