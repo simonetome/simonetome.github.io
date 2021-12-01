@@ -14,6 +14,7 @@
     <script type="text/javascript" src="lib/node.js"></script>
     <script type="text/javascript" src="lib/sceneGraph.js"></script>
     <script type="text/javascript" src="lib/globals.js"></script>
+    <script type="text/javascript" src="lib/globalsUpdate.js"></script>
     <script type="text/javascript" src="lib/audioLoop.js"></script>
     <script type="text/javascript" src="lib/collision.js"></script>
     <script type="text/javascript" src="lib/app.js"></script>
@@ -70,15 +71,22 @@
           </div>
         </li></br>
         <li>
-          Specular:<br>
+          <b>Specular:</b><br>
           <input type="radio" id="specNone"
                 name="specular" value="none" onclick = "specularInactive();" checked>
           <label for="specNone">None</label>
           <input type="radio" id="specPhong"
                 name="specular" value="phong" onclick = "specularActive();">
           <label for="specPhong">Phong</label>
+        </li><br>
+        <li>
+          <b>Ambient light: </b><br>
+          <input type="radio" id="ambientNone" name="ambient" value="none" onclick = "ambientNone();" checked>
+          <label for="specNone">None</label>
+          <input type="radio" id="specPhong" name="ambient" value="uniform" onclick = "ambientActive();">
+          <label for="specPhong">Uniform</label> </br>
+          color: <input type="color" class="color-picker" value="#000000" id="ambientColor" onchange="ambientChange(this.value);"> </br>
         </li>
-
         
       </ul>
     </p>

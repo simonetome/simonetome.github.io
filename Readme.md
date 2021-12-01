@@ -2,6 +2,8 @@
 
 This is an implementation of a simplified Arkanoid-like game with WebGl2 for the Computer Graphics course @ PoliMi (professor Gribaudo).
 
+Play a demo @ https://simonetome.github.io/
+
 <h3>Features</h3>
 
 - Directional light (color/directions can be changed real-time);
@@ -29,3 +31,15 @@ This is an implementation of a simplified Arkanoid-like game with WebGl2 for the
 https://mixkit.co/free-sound-effects/game/
 
 Assets have been created with Blender (https://www.blender.org/) and textures for the blocks with Gimp (https://www.gimp.org/).
+
+<b>External libraries:</b></br>
+From the course assignments:</br>
+```utils.js```
+</br>
+From https://webgl2fundamentals.org/ to compute matrices for the skybox:
+</br>
+```m4.js```
+</br>
+For the .obj loading: </br>
+```webgl-obj-loader.min.js```
+</br>
